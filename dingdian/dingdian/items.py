@@ -14,7 +14,7 @@ class DingdianItem(scrapy.Item):
     #小说的名字
     name=scrapy.Field()
     #作者
-    auther=scrapy.Field()
+    author=scrapy.Field()
     #小说地址
     novelurl=scrapy.Field()
     #状态
