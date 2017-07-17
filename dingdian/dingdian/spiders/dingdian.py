@@ -28,7 +28,7 @@ class Myspider(scrapy.Spider):
 	def get_name(self,response):
 		tds=BeautifulSoup(response.text,'lxml').find_all('tr',bgcolor='#FFFFFF')
 		for td in tds:
-			novelname=td.find('a').get_text()
+			novelname=td.find_all('a')[1].get_text()
 			novelurl=td.find('a')['href']
 			yield Request(novelurl,callback=self.get_chapterurl,meta={'name':novelname,'url':novelurl})
 
@@ -37,13 +37,14 @@ class Myspider(scrapy.Spider):
 		item['name']=str(response.meta['name']).replace('\xa0','')
 		item['novelurl']=response.meta['url']
 		category=BeautifulSoup(response.text,'lxml').find('table').find('a').get_text()
-		author=BeautifulSoup(response.text,'lxml').find('table').find_all('td')[2].get_text()
-		
-		serialstatus=BeautifulSoup(response.text).find('table').find_all('td')[5].get_text()
-		serialnumber=BeautifulSoup(response.text).find('table').find_all('td')[3].get_text()
+		author=BeautifulSoup(response.text,'lxml').find('table').find_all('td')[1].get_text()
+		bash_url=BeautifulSoup(response.text,'lxml').find('p',class_='btnlinks').find('a',class_='read')['href']
+		name_id=str(bash_url)[-6:-1].replace('/','')
+		serialstatus=BeautifulSoup(response.text).find('table').find_all('td')[2].get_text()
+		serialnumber=BeautifulSoup(response.text).find('table').find_all('td')[4].get_text()
 		item['category']=str(category).replace('/','')
-		item['author']=str(author).replace('/','')
-#		item['name_id']=name_id
-		item['serialstatus']=str(serialstatus).replace('/','')
-		item['serialnumber']=str(serialnumber).replace('/','')
+		item['author']=str(author).replace('\xa0','')
+		item['name_id']=name_id
+		item['serialstatus']=str(serialstatus).replace('\xa0','')
+		item['serialnumber']=str(serialnumber).replace('\xa0','')
 		return item
