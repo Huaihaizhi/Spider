@@ -88,3 +88,9 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+MYSQL_HOSTS='127.0.0.1'
+MYAQL_USER=''
+MYSQL_PASSWORD=''
+MYSQL_PORT='3306'
+MYSQL_DB='xiaoshuo'
