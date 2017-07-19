@@ -47,4 +47,24 @@ class Myspider(scrapy.Spider):
 		item['name_id']=name_id
 		item['serialstatus']=str(serialstatus).replace('\xa0','')
 		item['serialnumber']=str(serialnumber).replace('\xa0','')
+		yield item
+		yield Request(url=bash_url,callback=self.get_chapter,meta={'name_id':name_id})
+
+	def get_chapter(self,response):
+		urls=re.findall(r'<td class="L"><a href="(.*?)">(.*?)</a></td>',response.text)
+		num=0
+		for url in urls:
+			num=num+1
+			chapterurl=response.url+url[0]
+			chaptername=url[1]
+			yield Request(chapterurl,callback=self.get_chaptercontent,meta={'num':num,'name_id':response.meta['name_id'],'chaptername':chaptername,'chapterurl':chapterurl})
+
+	def get_chaptercontent(self,response):
+		item=DcontentItem()
+		item['num']=response.meta['num']
+		item['id_name']=response.meta['name_id']
+		item['chaptername']=str(response.meta['chaptername']).replace('\xa0','')
+		item['chapterurl']=response.meta['chapterurl']
+		content=BeautifulSoup(response.text,'lxml').find('dd',id='contents').get_text()
+		item['chaptercontent']=str(content).replace('\xa0','')
 		return item
