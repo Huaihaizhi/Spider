@@ -2,7 +2,7 @@ import mysql.connector
 from dingdian import settings
 MYSQL_HOSTS=settings.MYSQL_HOSTS
 MYSQL_USER=settings.MYSQL_USER
-MYSQL_PASSWORD=settings.MYSQL_PASSWORD
+MYSQL_PASSWORD=settings.MYSQL_PASSWORD 
 MYSQL_PORT=settings.MYSQL_PORT
 MYSQL_DB=settings.MYSQL_DB
 
@@ -24,8 +24,8 @@ class Sql:
 
 	@classmethod
 	def select_name(cls,name_id):
-		sql="select exists(select 1 from dd_name where name_id=%(name_d)s)"
-		value{
+		sql="select exists(select 1 from dd_name where name_id=%(name_id)s)"
+		value={
 			'name_id':name_id
 		}
 		cur.execute(sql,value)

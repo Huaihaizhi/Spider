@@ -64,9 +64,11 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'dingdian.pipelines.DingdianPipeline': 300,
-#}
+ITEM_PIPELINES = {
+	#dingdian.pipelines.DingdianPipeline': 300,
+	'dingdian.mysqlpipelines.pipelines.DingdianPipeline':1,
+	#'dingdian.mysqlpipelines.pipelines.DcontentPipeline':1,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -90,7 +92,7 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 MYSQL_HOSTS='127.0.0.1'
-MYAQL_USER=''
+MYSQL_USER=''
 MYSQL_PASSWORD=''
 MYSQL_PORT='3306'
 MYSQL_DB='xiaoshuo'
