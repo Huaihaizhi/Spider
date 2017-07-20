@@ -30,3 +30,26 @@ class Sql:
 		}
 		cur.execute(sql,value)
 		return cur.fetchall()[0]
+
+
+	@classmethod
+	def insert_dd_chaptername(cls,xs_chaptername,xs_content,id_name,num_id,url):
+		sql='insert into dd_chaptername (`xs_chaptername`,`xs_content`,`id_name`,`num_id`,`url`) values (%(xs_chaptername)s,%(xs_content)s,%(id_name)s,%(num_id)s,%(url)s)'
+		value={
+			'xs_chaptername':xs_chaptername,
+			'xs_content':xs_content,
+			'id_name':id_name,
+			'num_id':num_id,
+			'url':url
+		}
+		cur.execute(sql,value)
+		cnx.commit()
+
+	@classmethod
+	def select_chapter(cls,url):
+		sql="select exists(select 1 from dd_chaptername where url=%(url)s)"
+		value={
+			'url':url
+		}
+		cur.execute(sql,value)
+		return cur.fetchall()[0]
