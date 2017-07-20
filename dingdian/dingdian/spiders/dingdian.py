@@ -5,6 +5,8 @@ import scrapy
 from bs4 import BeautifulSoup
 from scrapy.http import Request
 from dingdian.items import DingdianItem
+from dingdian.items import DcontentItem
+from dingdian.mysqlpipelines.sql import Sql
 
 class Myspider(scrapy.Spider):
 	name='dingdian'
@@ -57,7 +59,12 @@ class Myspider(scrapy.Spider):
 			num=num+1
 			chapterurl=response.url+url[0]
 			chaptername=url[1]
-			yield Request(chapterurl,callback=self.get_chaptercontent,meta={'num':num,'name_id':response.meta['name_id'],'chaptername':chaptername,'chapterurl':chapterurl})
+			rets=Sql.select_chapter(chapterurl)
+			if rets[0]==1:
+				print('章节已经存在！')
+				pass
+			else:
+				yield Request(chapterurl,callback=self.get_chaptercontent,meta={'num':num,'name_id':response.meta['name_id'],'chaptername':chaptername,'chapterurl':chapterurl})
 
 	def get_chaptercontent(self,response):
 		item=DcontentItem()
