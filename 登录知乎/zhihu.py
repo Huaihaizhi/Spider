@@ -30,7 +30,6 @@ if int(num)==1:
 	n=input('请输入第几个汉字颠倒：')
 	list=[21*int(n)+int(n),21.6094]
 	l.append(list)
-	#click1=session.post('https://zhihu-web-analytics.zhihu.com/api/v1/logs/batch',data={},headers=headers)
 	dic["input_points"]=l
 	dic=json.dumps(dic)
 	postdata={
@@ -43,10 +42,8 @@ if int(num)==1:
 if int(num)==2:
 	n=input('请输入第1个颠倒的汉字的顺序：')
 	l.append([21*int(n)+int(n),21.6094])
-	#click1=session.post('https://zhihu-web-analytics.zhihu.com/api/v1/logs/batch',data={},headers=headers)
 	n=input('请输入第2个颠倒的汉字的顺序：')
 	l.append([21*int(n)+int(n),21.6094])
-	#click1=session.post('https://zhihu-web-analytics.zhihu.com/api/v1/logs/batch',data={},headers=headers)
 	dic["input_points"]=l
 	dic=json.dumps(dic)
 	postdata={
@@ -57,16 +54,9 @@ if int(num)==2:
 		'phone_num':number
 		}
 
-# postdata=urllib.parse.urlencode(postdata).encode()
+
 print(postdata)
 res=session.post('https://www.zhihu.com/login/phone_num',data=postdata,headers=headers)
 print(res.text)		
 r = session.get('http://www.zhihu.com/',headers=headers)  
 print(r.text) 
-
-# {"img_size":[200,44],"input_points":l}
-# https://www.zhihu.com/captcha.gif?r=1507957379288&type=login&lang=cn
-# t = str(int(time.time()*1000))
-# https://zhihu-web-analytics.zhihu.com/api/v1/logs/batch
-# https://zhihu-web-analytics.zhihu.com/api/v1/logs/batch
-# https://zhihu-web-analytics.zhihu.com/api/v1/logs/batch
