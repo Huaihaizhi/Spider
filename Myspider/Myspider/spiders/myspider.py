@@ -22,5 +22,4 @@ class MyspiderSpider(scrapy.Spider):
             item['name']=name[0]
             item['title']=title[0]
             item['info']=info[0]
-            l.append(item)
-        return l
+            yield item
