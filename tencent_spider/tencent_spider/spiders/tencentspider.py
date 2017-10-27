@@ -27,9 +27,9 @@ class TencentspiderSpider(scrapy.Spider):
         	item['position_name']=position_name[0]
         	item['position_link']=position_link[0]
         	item['position_cate']=position_cate[0]
-        	item['position_number']=position_cate[0]
+        	item['position_number']=position_number[0]
         	item['position_location']=position_location[0]
-        	item['position_time']=position_location[0]
+        	item['position_time']=position_time[0]
 
         	yield item
 
