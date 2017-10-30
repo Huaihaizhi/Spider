@@ -26,4 +26,4 @@ def parse(self,response):
 	if next_url:
 		next_url='https://movie.douban.com/top250'+next_url[0]
 		print(next_url)
-		yield scrapy.Request(next_url,headers=self.header)
+		yield scrapy.Request(next_url,callback=self.parse,headers=self.header)
