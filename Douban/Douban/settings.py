@@ -27,7 +27,7 @@ USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+# DOWNLOAD_DELAY = 2
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -54,7 +54,7 @@ COOKIES_ENABLED = False
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    'Douban.middlewares.RandomUserAgent': 100,
-   # 'Douban.middlewares.RandomProxy':200,
+   'Douban.middlewares.RandomProxy':200,
 }
 USER_AGENTS=[
 'Mozilla/5.0(Windows;U;WindowsNT6.1;en-us)AppleWebKit/534.50(KHTML,likeGecko)Version/5.1Safari/534.50',
@@ -65,9 +65,11 @@ USER_AGENTS=[
 'Mozilla/5.0(Macintosh;IntelMacOSX10.6;rv:2.0.1)Gecko/20100101Firefox/4.0.1',
 'Mozilla/5.0(Macintosh;U;IntelMacOSX10_6_8;en-us)AppleWebKit/534.50(KHTML,likeGecko)Version/5.1Safari/534.50'
 ]
-PROXIES=[]
-LOG_FILE='douban.log'
-LOG_LEVEL='DEBUG'
+PROXIES=[
+		{'ip_port':'122.114.69.239:16816','user_passwd':'anmei607544:pu89vamo'},
+]
+# LOG_FILE='douban.log'
+# LOG_LEVEL='DEBUG'
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
